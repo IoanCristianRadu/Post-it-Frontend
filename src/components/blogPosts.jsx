@@ -11,14 +11,18 @@ class BlogPosts extends Component {
   }
 
   render() {
-    return <div>{this.showPosts()}</div>;
+    return <div className="container">{this.showPosts()}</div>;
   }
 
   showPosts() {
     return this.state.items.map(item => (
       <div key={item.id}>
-        <h1>{item.title}</h1>
-        <h1>{item.content}</h1>
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title myTextAlignCenter">{item.title}</h5>
+            <p className="card-text">{item.content}</p>
+          </div>
+        </div>
       </div>
     ));
   }
