@@ -1,21 +1,14 @@
 import React, { Component } from "react";
 
 class BlogPosts extends Component {
-  state = {
-    items: []
-  };
-
-  constructor() {
-    super();
-    this.getPosts();
-  }
 
   render() {
-    return <div className="container">{this.showPosts()}</div>;
+    return <div className="container">
+      {this.showPosts()}</div>;
   }
 
   showPosts() {
-    return this.state.items.map(item => (
+    return this.props.items.map(item => (
       <div key={item.id}>
         <div className="card">
           <div className="card-body">
@@ -25,12 +18,6 @@ class BlogPosts extends Component {
         </div>
       </div>
     ));
-  }
-
-  getPosts() {
-    fetch(`http://localhost:8080/posts/all`)
-      .then(result => result.json())
-      .then(myItems => this.setState({ items: myItems }));
   }
 }
 
