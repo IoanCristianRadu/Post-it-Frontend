@@ -4,8 +4,7 @@ import NewPost from "./newPost";
 
 class NavBar extends Component {
   state = {
-    items: [],
-    content : {}
+    items: []
   };
 
   constructor() {
@@ -17,6 +16,7 @@ class NavBar extends Component {
     fetch(url)
       .then(result => result.json())
       .then(myItems => this.setState({ items: myItems }));
+
   }
 
   getTitle = () => {
@@ -53,7 +53,7 @@ class NavBar extends Component {
                 data-target="#exampleModalCenter">
                 New Post
             </button>
-              <NewPost content={this.state.content}></NewPost>
+              <NewPost></NewPost>
             </ul>
 
             <div className="my-2 my-lg-0" style={{ display: "inline-flex" }}>
