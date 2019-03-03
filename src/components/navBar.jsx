@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import BlogPosts from "./blogPosts";
+import NewPost from "./newPost";
 
 class NavBar extends Component {
   state = {
-    items: []
+    items: [],
+    content : {}
   };
 
   constructor() {
@@ -47,9 +49,11 @@ class NavBar extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <button className="btn btn-outline-success my-2 my-sm-0">
+              <button className="btn btn-outline-success my-2 my-sm-0" data-toggle="modal"
+                data-target="#exampleModalCenter">
                 New Post
             </button>
+              <NewPost content={this.state.content}></NewPost>
             </ul>
 
             <div className="my-2 my-lg-0" style={{ display: "inline-flex" }}>
