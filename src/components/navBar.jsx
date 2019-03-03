@@ -18,7 +18,7 @@ class NavBar extends Component {
   }
 
   getTitle = () => {
-    if (document.getElementById("search").value == "") {
+    if (document.getElementById("search").value === "") {
       this.getPosts("http://localhost:8080/posts/all");
     }
     else {
@@ -52,21 +52,22 @@ class NavBar extends Component {
             </button>
             </ul>
 
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              id="search"
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-              onClick={this.getTitle}
-            >
-              Search
+            <div className="my-2 my-lg-0" style={{ display: "inline-flex" }}>
+              <input
+                className="form-control mr-sm-2 "
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                id="search"
+              />
+              <button
+                className="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+                onClick={this.getTitle}
+              >
+                Search
             </button>
-
+            </div>
           </div>
         </nav>
         <BlogPosts items={this.state.items}></BlogPosts>
