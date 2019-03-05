@@ -34,6 +34,10 @@ class NavBar extends Component {
     this.setState({ username: username });
   }
 
+  updatePosts = () => {
+    this.getPosts(`http://localhost:8080/posts/all`);
+  }
+
   account = () => {
     if (this.state.username == "") {
       return (
@@ -112,7 +116,7 @@ class NavBar extends Component {
         </nav>
         <Posts items={this.state.items}></Posts>
         <Login updateCurrentUser={this.updateCurrentUser}></Login>
-        <NewPost></NewPost>
+        <NewPost updatePosts={this.updatePosts}></NewPost>
         <CreateAccount></CreateAccount>
       </React.Fragment>
     );
