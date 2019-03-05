@@ -4,20 +4,19 @@ class Login extends Component {
     state = {}
 
     postMe = () => {
-        fetch("http://localhost:8080/posts", {
-            method: 'PUT', // or 'PUT'
+        fetch("http://localhost:8080/account/login", {
+            method: 'POST', // or 'PUT'
             body: JSON.stringify({
-                title: document.getElementById("loginUsername").value,
-                content: document.getElementById("loginPassword").value
+                username: document.getElementById("loginUsername").value,
+                password: document.getElementById("loginPassword").value
             }),
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
             .then(response => console.log('Success:', JSON.stringify(response)))
+            .then(this.props.updateCurrentUser(document.getElementById("loginUsername").value))
             .catch(error => console.error('Error:', error));
-
-        window.location.reload();
     }
 
     render() {

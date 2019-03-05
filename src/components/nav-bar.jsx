@@ -19,7 +19,6 @@ class NavBar extends Component {
     fetch(url)
       .then(result => result.json())
       .then(myItems => this.setState({ items: myItems }));
-
   }
 
   getTitle = () => {
@@ -28,6 +27,37 @@ class NavBar extends Component {
     }
     else {
       this.getPosts("http://localhost:8080/posts/title/" + document.getElementById("search").value);
+    }
+  }
+
+  updateCurrentUser = (username) => {
+    this.setState({ username: username });
+  }
+
+  account = () => {
+    if (this.state.username == "") {
+      return (
+        <React.Fragment>
+          <ul className="navbar-nav">
+            <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
+              data-target="#login">
+              Log in
+              </button>
+          </ul>
+          <ul className="navbar-nav">
+            <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
+              data-target="#createAccount">
+              Create account
+              </button>
+          </ul>
+        </React.Fragment>
+      )
+    } else {
+      return (
+        <button type="button" class="btn btn-primary">
+          {this.state.username}
+        </button>
+      )
     }
   }
 
@@ -57,7 +87,6 @@ class NavBar extends Component {
                   data-target="#exampleModalCenter">
                   New Post
                 </button>
-                <NewPost></NewPost>
               </li>
               <li>
                 <div className="my-2 my-lg-0 ml-2" style={{ display: "inline-flex" }}>
@@ -78,23 +107,13 @@ class NavBar extends Component {
                 </div>
               </li>
             </ul>
-            <ul className="navbar-nav">
-              <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
-                data-target="#login">
-                Log in
-            </button>
-              <Login></Login>
-            </ul>
-            <ul className="navbar-nav">
-              <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
-                data-target="#createAccount">
-                Create account
-            </button>
-              <CreateAccount></CreateAccount>
-            </ul>
+            {this.account()}
           </div>
         </nav>
         <Posts items={this.state.items}></Posts>
+        <Login updateCurrentUser={this.updateCurrentUser}></Login>
+        <NewPost></NewPost>
+        <CreateAccount></CreateAccount>
       </React.Fragment>
     );
   }
