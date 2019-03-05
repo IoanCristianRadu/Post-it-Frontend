@@ -4,12 +4,12 @@ class CreateAccount extends Component {
     state = {}
 
     postMe = () => {
-        console.log(document.getElementById("createAccUsername").value + " " + document.getElementById("CreateAccPassword").value)
         fetch("http://localhost:8080/account", {
             method: 'PUT', // or 'PUT'
             body: JSON.stringify({
-                title: document.getElementById("createAccUsername").value,
-                content: document.getElementById("CreateAccPassword").value
+                username: document.getElementById("createAccUsername").value,
+                password: document.getElementById("CreateAccPassword").value,
+                comments: []
             }),
             headers: {
                 'Content-Type': 'application/json'

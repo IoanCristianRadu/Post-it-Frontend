@@ -5,7 +5,7 @@ class Login extends Component {
 
     postMe = () => {
         fetch("http://localhost:8080/posts", {
-            method: 'POST', // or 'PUT'
+            method: 'PUT', // or 'PUT'
             body: JSON.stringify({
                 title: document.getElementById("loginUsername").value,
                 content: document.getElementById("loginPassword").value
