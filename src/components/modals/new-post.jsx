@@ -35,7 +35,7 @@ class NewPost extends Component {
                         <div className="modal-body">
                             <form className="was-validated">
                                 <div className="mb-3">
-                                    <label htmlFor="Title">Title</label>
+                                    <label htmlFor="title">Title</label>
                                     <textarea className="form-control" id="title" name="title" required></textarea>
                                 </div>
                                 <div className="mb-3">
@@ -44,7 +44,7 @@ class NewPost extends Component {
                                         required></textarea>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="content">photoURL</label>
+                                    <label htmlFor="photoURL">photoURL</label>
                                     <textarea className="form-control" id="photoURL" name="photoURL" ></textarea>
                                 </div>
                                 <div className="modal-footer">
