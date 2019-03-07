@@ -3,10 +3,12 @@ import Posts from "./posts";
 import NewPost from "./modals/new-post";
 import Login from "./modals/login";
 import CreateAccount from "./modals/create-account";
+import MyProfile from "./modals/my-profile";
 
 class NavBar extends Component {
   state = {
     username: "",
+    id: "",
     items: []
   };
 
@@ -32,7 +34,11 @@ class NavBar extends Component {
   }
 
   updateCurrentUser = (username) => {
-    this.setState({ username: username });
+    this.setState({ username });
+  }
+
+  updateCurrentId = (id) => {
+    this.setState({ id });
   }
 
   updatePosts = () => {
@@ -56,9 +62,10 @@ class NavBar extends Component {
           </div>
         </nav>
         <Posts items={this.state.items}></Posts>
-        <Login updateCurrentUser={this.updateCurrentUser}></Login>
+        <Login updateCurrentUser={this.updateCurrentUser} updateCurrentId={this.updateCurrentId}></Login>
         <NewPost updatePosts={this.updatePosts}></NewPost>
         <CreateAccount></CreateAccount>
+        <MyProfile username={this.state.username} id={this.state.id} updateCurrentUser={this.updateCurrentUser} updateCurrentId={this.updateCurrentId}></MyProfile>
       </React.Fragment>
     );
   }
@@ -90,14 +97,12 @@ class NavBar extends Component {
         <React.Fragment>
           <ul className="navbar-nav">
             <li>
-              <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
-                data-target="#login">
+              <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal" data-target="#login">
                 Log in
               </button>
             </li>
             <li>
-              <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
-                data-target="#createAccount">
+              <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal" data-target="#createAccount">
                 Create account
               </button>
             </li>
@@ -114,13 +119,17 @@ class NavBar extends Component {
               </button>
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a className="dropdown-item" href="#">My Profile</a>
-              <a className="dropdown-item" href="#">Log out</a>
+              <a className="dropdown-item" data-toggle="modal" data-target="#myProfile" >My Profile</a>
+              <a className="dropdown-item" onClick={this.logOut}>Log out</a>
             </div>
           </li>
         </ul>
       )
     }
+  }
+
+  logOut = () => {
+    this.setState({ username: "" });
   }
 
 }

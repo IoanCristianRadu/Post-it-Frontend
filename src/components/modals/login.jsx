@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Login extends Component {
     state = {}
 
-    postMe = () => {
+    logIn = () => {
         fetch("http://localhost:8080/account/login", {
             method: 'POST', // or 'PUT'
             body: JSON.stringify({
@@ -14,7 +14,7 @@ class Login extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
+            .then(response => this.props.updateCurrentId(response))
             .then(this.props.updateCurrentUser(document.getElementById("loginUsername").value))
             .catch(error => console.error('Error:', error));
     }
@@ -44,7 +44,7 @@ class Login extends Component {
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary" data-dismiss="modal" onClick={this.postMe}>Post</button>
+                                    <button type="submit" className="btn btn-primary" data-dismiss="modal" onClick={this.logIn}>Log in</button>
                                 </div>
                             </form>
                         </div >
