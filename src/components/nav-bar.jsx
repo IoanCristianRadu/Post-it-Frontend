@@ -57,20 +57,20 @@ class NavBar extends Component {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {this.postsHtml()}
-            {this.accountHtml()}
+            {this.navbarPostsHtml()}
+            {this.navbarAccountHtml()}
           </div>
         </nav>
         <Posts items={this.state.items}></Posts>
         <Login updateCurrentUser={this.updateCurrentUser} updateCurrentId={this.updateCurrentId}></Login>
-        <NewPost updatePosts={this.updatePosts} username={this.state.username}></NewPost>
+        <NewPost updatePosts={this.updatePosts} state={this.state}></NewPost>
         <CreateAccount></CreateAccount>
         <MyProfile username={this.state.username} id={this.state.id} updateCurrentUser={this.updateCurrentUser} updateCurrentId={this.updateCurrentId}></MyProfile>
       </React.Fragment>
     );
   }
 
-  postsHtml = () => {
+  navbarPostsHtml = () => {
     return (
       <ul className="navbar-nav mr-auto">
         <li>
@@ -91,7 +91,7 @@ class NavBar extends Component {
     )
   }
 
-  accountHtml = () => {
+  navbarAccountHtml = () => {
     if (this.state.username === "") {
       return (
         <React.Fragment>

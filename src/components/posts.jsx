@@ -8,17 +8,24 @@ class Posts extends Component {
   }
 
   showPosts() {
-    return this.props.items.map(item => (
-      <div key={item.id}>
+    return this.props.items.map(post => (
+      <div key={post.id}>
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title myTextAlignCenter">{item.title}</h5>
-            <p className="card-text">{item.content}</p>
-            <p className="card-text" style={{ textAlign: "right" }}>{item.username}</p>
+            <h5 className="card-title myTextAlignCenter">{post.title}</h5>
+            {this.addImageIfExists(post)}
+            <p className="card-text">{post.content}</p>
+            <p className="card-text" style={{ textAlign: "right" }}>{post.username}</p>
           </div>
         </div>
       </div>
     ));
+  }
+
+  addImageIfExists = (post) => {
+    if (post.photoURL != "") {
+      return <img src={post.photoURL} className="center"></img>
+    }
   }
 }
 

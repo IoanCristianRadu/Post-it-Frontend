@@ -1,3 +1,12 @@
 .myTextAlignCenter{
     text-align: center;
 }
+
+.center {
+    width: 50%;
+    border: 1px solid #b3d7ff;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }

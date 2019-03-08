@@ -4,7 +4,7 @@ class NewPost extends Component {
     state = {}
 
     postMe = () => {
-        if (this.props.username === "") {
+        if (this.props.state.username === "") {
             alert("You are not logged in!");
         } else {
             fetch("http://localhost:8080/posts", {
@@ -12,7 +12,8 @@ class NewPost extends Component {
                 body: JSON.stringify({
                     title: document.getElementById("title").value,
                     content: document.getElementById("content").value,
-                    username: this.props.username
+                    photoURL: document.getElementById("photoURL").value,
+                    username: this.props.state.username
                 }),
                 headers: {
                     'Content-Type': 'application/json'
