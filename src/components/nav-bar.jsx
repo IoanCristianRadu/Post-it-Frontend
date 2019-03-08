@@ -12,6 +12,7 @@ class NavBar extends Component {
         username: "",
         id: "",
         clickedPostNumber: -1,
+        clickedPostId : "",
         items: []
     };
 
@@ -65,20 +66,27 @@ class NavBar extends Component {
                         {this.navbarAccountHtml()}
                     </div>
                 </nav>
-                <Posts items={this.state.items} updateClickedPostNumber={this.updateClickedPostNumber}/>
+                <Posts items={this.state.items} updateClickedPostId={this.updateClickedPostId}/>
                 <Login updateCurrentUser={this.updateCurrentUser} updateCurrentId={this.updateCurrentId}/>
                 <NewPost updatePosts={this.updatePosts} state={this.state}/>
                 <CreateAccount/>
                 <MyProfile username={this.state.username} id={this.state.id} updateCurrentUser={this.updateCurrentUser}
                            updateCurrentId={this.updateCurrentId}/>
-                <div className={"myBody"}/>
             </React.Fragment>
         );
     }
 
-    updateClickedPostNumber = (clickedPostNumber) => {
-        this.setState({clickedPostNumber});
-        ReactDOM.render(<SinglePost post={this.state.items[clickedPostNumber]}/>, document.getElementById("myBody"));
+    componentDidMount(){
+        ReactDOM.render(<SinglePost state={this.state}/>, document.getElementById("myBody"));
+    }
+
+    componentDidUpdate(){
+        ReactDOM.render(<SinglePost state={this.state}/>, document.getElementById("myBody"));
+    }
+
+    updateClickedPostId = (clickedPostId) => {
+        console.log(clickedPostId);
+        this.setState({clickedPostId});
     };
 
     navbarPostsHtml = () => {

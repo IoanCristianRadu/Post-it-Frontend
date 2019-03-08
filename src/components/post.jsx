@@ -5,7 +5,7 @@ class Post extends Component {
     render() {
         return (
             <div key={this.props.post.id} className={"cursorPointer"} data-toggle="modal" data-target="#modalSinglePost"
-                 onClick={this.callUpdateClickedPostNumber}>
+                 onClick={this.callUpdateClickedPostId}>
                 <div className="card">
                     <div className="card-body">
                         <h5 className="card-title myTextAlignCenter">{this.props.post.title}</h5>
@@ -18,9 +18,9 @@ class Post extends Component {
         )
     }
 
-    //post -> posts -> navbar: updateClickedPostNumber
-    callUpdateClickedPostNumber = () => {
-        this.props.updateClickedPostNumber(this.props.number);
+    //post -> posts -> navbar: updateClickedPostId
+    callUpdateClickedPostId = () => {
+        this.props.updateClickedPostId(this.props.post.id);
     }
 
     addImageIfExists = (post) => {

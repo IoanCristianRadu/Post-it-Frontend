@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 class NewPost extends Component {
-    state = {}
-
     postMe = () => {
         if (this.props.state.username === "") {
             alert("You are not logged in!");
@@ -41,16 +39,16 @@ class NewPost extends Component {
                             <form className="was-validated">
                                 <div className="mb-3">
                                     <label htmlFor="title">Title</label>
-                                    <textarea className="form-control" id="title" name="title" required></textarea>
+                                    <textarea className="form-control" id="title" name="title" required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="content">Content</label>
                                     <textarea className="form-control" id="content" name="content"
-                                        required></textarea>
+                                        required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="photoURL">photoURL</label>
-                                    <textarea className="form-control" id="photoURL" name="photoURL" ></textarea>
+                                    <textarea className="form-control" id="photoURL" name="photoURL" />
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
