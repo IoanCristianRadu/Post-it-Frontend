@@ -1,32 +1,18 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
+import Post from "./post";
 
 class Posts extends Component {
+    a = 0;
 
-  render() {
-    return <div className="container">
-      {this.showPosts()}</div>;
-  }
-
-  showPosts() {
-    return this.props.items.map(post => (
-      <div key={post.id}>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title myTextAlignCenter">{post.title}</h5>
-            {this.addImageIfExists(post)}
-            <p className="card-text">{post.content}</p>
-            <p className="card-text" style={{ textAlign: "right" }}>{post.username}</p>
-          </div>
-        </div>
-      </div>
-    ));
-  }
-
-  addImageIfExists = (post) => {
-    if (post.photoURL != "") {
-      return <img src={post.photoURL} className="center"></img>
+    render() {
+        return <div className="container">
+            {this.showPosts()}</div>;
     }
-  }
+
+    showPosts() {
+        return this.props.items.map(post => (<Post key={post.id} post={post} number={this.a++} updateClickedPostNumber={this.props.updateClickedPostNumber}/>
+        ));
+    }
 }
 
 export default Posts;
