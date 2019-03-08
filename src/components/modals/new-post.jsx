@@ -4,19 +4,24 @@ class NewPost extends Component {
     state = {}
 
     postMe = () => {
-        fetch("http://localhost:8080/posts", {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify({
-                title: document.getElementById("title").value,
-                content: document.getElementById("content").value
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-            .then(response => console.log('Success:', JSON.stringify(response)))
-            .then(this.props.updatePosts())
-            .catch(error => console.error('Error:', error));
+        if (this.props.username === "") {
+            alert("You are not logged in!");
+        } else {
+            fetch("http://localhost:8080/posts", {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify({
+                    title: document.getElementById("title").value,
+                    content: document.getElementById("content").value,
+                    username: this.props.username
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+                .then(response => console.log('Success:', JSON.stringify(response)))
+                .then(this.props.updatePosts())
+                .catch(error => console.error('Error:', error));
+        }
     }
 
     render() {

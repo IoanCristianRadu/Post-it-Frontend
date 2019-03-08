@@ -63,7 +63,7 @@ class NavBar extends Component {
         </nav>
         <Posts items={this.state.items}></Posts>
         <Login updateCurrentUser={this.updateCurrentUser} updateCurrentId={this.updateCurrentId}></Login>
-        <NewPost updatePosts={this.updatePosts}></NewPost>
+        <NewPost updatePosts={this.updatePosts} username={this.state.username}></NewPost>
         <CreateAccount></CreateAccount>
         <MyProfile username={this.state.username} id={this.state.id} updateCurrentUser={this.updateCurrentUser} updateCurrentId={this.updateCurrentId}></MyProfile>
       </React.Fragment>
