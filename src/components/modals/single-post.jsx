@@ -6,7 +6,7 @@ class SinglePost extends Component {
             <div className="modal fade" id="modalSinglePost" tabIndex="-1" role="dialog"
                  aria-labelledby="singlePostTitle"
                  aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered" role="document">
+                <div className="modal-dialog modal-dialog-centered myModalWidth" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="singlePostTitle">{this.props.post.title}</h5>
@@ -18,10 +18,18 @@ class SinglePost extends Component {
                             <div className="card">
                                 <div className="card-body">
                                     {this.addImageIfExists()}
-                                    <p className="card-text">{this.props.post.content}</p>
+                                    <p className="card-text mt-3">{this.props.post.content}</p>
                                     <p className="card-text"
                                        style={{textAlign: "right"}}>{this.props.post.username}</p>
-                                    {this.addComments()}
+                                    <hr/>
+                                    <form className="was-validated">
+                                        <div className="mb-3">
+                                            <label htmlFor="CommentArea">Comment:</label>
+                                            <textarea className="form-control is-invalid" id="CommentArea"
+                                                      placeholder="Required example textarea" required/>
+                                            {this.addComments()}
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

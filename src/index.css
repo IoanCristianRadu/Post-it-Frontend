@@ -14,3 +14,7 @@
 .cursorPointer{
     cursor: pointer;
 }
+
+.myModalWidth{
+    max-width: 70%;
+}
