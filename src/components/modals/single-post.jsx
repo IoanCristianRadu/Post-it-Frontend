@@ -9,33 +9,19 @@ class SinglePost extends Component {
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="singlePostTitle">New post</h5>
+                            <h5 className="modal-title" id="singlePostTitle">{this.props.post.title}</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body">
-                            <div key={this.props.post.id}
-                                 className={"cursorPointer"}
-                                 data-toggle="modal" data-target="#modalSinglePost">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title myTextAlignCenter">{this.props.post.id}</h5>
-                                        <div key={this.props.post.id}
-                                             className={"cursorPointer"}
-                                             data-toggle="modal" data-target="#modalSinglePost">
-                                            <div className="card">
-                                                <div className="card-body">
-                                                    <h5 className="card-title myTextAlignCenter">{this.props.post.title}</h5>
-                                                    {this.addImageIfExists()}
-                                                    <p className="card-text">{this.props.post.content}</p>
-                                                    <p className="card-text"
-                                                       style={{textAlign: "right"}}>{this.props.post.username}</p>
-                                                    {this.addComments()}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div key={this.props.post.id} className="modal-body">
+                            <div className="card">
+                                <div className="card-body">
+                                    {this.addImageIfExists()}
+                                    <p className="card-text">{this.props.post.content}</p>
+                                    <p className="card-text"
+                                       style={{textAlign: "right"}}>{this.props.post.username}</p>
+                                    {this.addComments()}
                                 </div>
                             </div>
                         </div>

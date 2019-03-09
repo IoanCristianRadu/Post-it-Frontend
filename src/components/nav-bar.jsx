@@ -76,7 +76,7 @@ class NavBar extends Component {
     }
 
     componentDidMount(){
-        let fake = {
+        let fakePost = {
             comments: [],
             content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales, lorem quis scelerisque ultrices, augue velit gravida lectus, at fringilla erat mauris eget magna. Morbi ut odio sed ligula ali…",
             id: "5c83ff45bc7e6309ac7cdc74",
@@ -84,7 +84,7 @@ class NavBar extends Component {
             title: "Title 1",
             username:"admin",
         }
-        ReactDOM.render(<SinglePost post={fake}/>, document.getElementById("myBody"));
+        ReactDOM.render(<SinglePost post={fakePost}/>, document.getElementById("myBody"));
     }
 
     componentDidUpdate(prevProps,prevState){
@@ -99,7 +99,6 @@ class NavBar extends Component {
     }
 
     updateClickedPostId = (clickedPostId) => {
-        console.log(clickedPostId);
         this.setState({clickedPostId});
     };
 
