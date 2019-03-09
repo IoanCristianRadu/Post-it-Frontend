@@ -15,12 +15,26 @@ class SinglePost extends Component {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <div key={this.props.state.clickedPostId}
+                            <div key={this.props.post.id}
                                  className={"cursorPointer"}
                                  data-toggle="modal" data-target="#modalSinglePost">
                                 <div className="card">
                                     <div className="card-body">
-                                        <h5 className="card-title myTextAlignCenter">{this.props.state.clickedPostId}</h5>
+                                        <h5 className="card-title myTextAlignCenter">{this.props.post.id}</h5>
+                                        <div key={this.props.post.id}
+                                             className={"cursorPointer"}
+                                             data-toggle="modal" data-target="#modalSinglePost">
+                                            <div className="card">
+                                                <div className="card-body">
+                                                    <h5 className="card-title myTextAlignCenter">{this.props.post.title}</h5>
+                                                    {this.addImageIfExists()}
+                                                    <p className="card-text">{this.props.post.content}</p>
+                                                    <p className="card-text"
+                                                       style={{textAlign: "right"}}>{this.props.post.username}</p>
+                                                    {this.addComments()}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -32,14 +46,14 @@ class SinglePost extends Component {
     }
 
     addImageIfExists = () => {
-        if (this.props.items[0].photoURL !== "") {
-            return <img src={this.props.items[0].photoURL} className="center"
+        if (this.props.post.photoURL !== "") {
+            return <img src={this.props.post.photoURL} className="center"
                         alt={"postImage"}/>
         }
     }
 
     addComments = () => {
-        return this.props.items[0].comments.map(comment => (
+        return this.props.post.comments.map(comment => (
             <p>{comment}</p>
         ));
     }

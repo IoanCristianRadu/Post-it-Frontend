@@ -4,7 +4,7 @@ class Post extends Component {
 
     render() {
         return (
-            <div key={this.props.post.id} className={"cursorPointer"} data-toggle="modal" data-target="#modalSinglePost"
+            <div key={this.props.post.id} id={this.props.post.id} className={"cursorPointer"} data-toggle="modal" data-target="#modalSinglePost"
                  onClick={this.callUpdateClickedPostId}>
                 <div className="card">
                     <div className="card-body">

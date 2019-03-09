@@ -11,7 +11,6 @@ class NavBar extends Component {
     state = {
         username: "",
         id: "",
-        clickedPostNumber: -1,
         clickedPostId : "",
         items: []
     };
@@ -77,11 +76,26 @@ class NavBar extends Component {
     }
 
     componentDidMount(){
-        ReactDOM.render(<SinglePost state={this.state}/>, document.getElementById("myBody"));
+        let fake = {
+            comments: [],
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales, lorem quis scelerisque ultrices, augue velit gravida lectus, at fringilla erat mauris eget magna. Morbi ut odio sed ligula ali…",
+            id: "5c83ff45bc7e6309ac7cdc74",
+            photoURL: "",
+            title: "Title 1",
+            username:"admin",
+        }
+        ReactDOM.render(<SinglePost post={fake}/>, document.getElementById("myBody"));
     }
 
-    componentDidUpdate(){
-        ReactDOM.render(<SinglePost state={this.state}/>, document.getElementById("myBody"));
+    componentDidUpdate(prevProps,prevState){
+        if (this.state.clickedPostId !== prevState.clickedPostId) {
+            let post = this.findPostById();
+            ReactDOM.render(<SinglePost post={post}/>, document.getElementById("myBody"));
+        }
+    }
+
+    findPostById= () =>{
+        return this.state.items.find(item => item.id === this.state.clickedPostId);
     }
 
     updateClickedPostId = (clickedPostId) => {
