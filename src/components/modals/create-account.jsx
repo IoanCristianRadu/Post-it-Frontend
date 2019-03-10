@@ -39,8 +39,7 @@ class CreateAccount extends Component {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="CreateAccPassword">Password</label>
-                                    <textarea className="form-control" id="CreateAccPassword" name="CreateAccPassword"
-    required/>
+                                    <textarea className="form-control" id="CreateAccPassword" name="CreateAccPassword" required/>
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-outline-danger" data-dismiss="modal">Close</button>

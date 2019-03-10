@@ -27,6 +27,9 @@ class SinglePost extends Component {
                                             <label htmlFor="CommentArea">Comment:</label>
                                             <textarea className="form-control is-invalid" id="CommentArea"
                                                       placeholder="Required example textarea" required/>
+                                            <button type="submit"
+                                                    className="btn btn-outline-info mt-1 myFloatRight">Post
+                                            </button>
                                             {this.addComments()}
                                         </div>
                                     </form>
@@ -44,14 +47,13 @@ class SinglePost extends Component {
             return <img src={this.props.post.photoURL} className="center"
                         alt={"postImage"}/>
         }
-    }
+    };
 
     addComments = () => {
         return this.props.post.comments.map(comment => (
             <p>{comment}</p>
         ));
     }
-
 }
 
 export default SinglePost;

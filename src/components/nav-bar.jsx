@@ -18,7 +18,7 @@ class NavBar extends Component {
     constructor() {
         super();
         this.getPosts(`http://localhost:8080/posts/all`);
-    }
+    };
 
     // Runs forever if onClick={this.getPosts("http://localhost:8080/posts/all")}
     getPosts = (url) => {
@@ -27,25 +27,24 @@ class NavBar extends Component {
             .then(myItems => this.setState({items: myItems}));
     };
 
-    getTitle = () => {
-        if (document.getElementById("search").value === "") {
-            this.getPosts("http://localhost:8080/posts/all");
-        } else {
-            this.getPosts("http://localhost:8080/posts/title/" + document.getElementById("search").value);
+    componentDidMount() {
+        let fakePost = {
+            comments: [],
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales, lorem quis scelerisque ultrices, augue velit gravida lectus, at fringilla erat mauris eget magna. Morbi ut odio sed ligula ali…",
+            id: "5c83ff45bc7e6309ac7cdc74",
+            photoURL: "",
+            title: "Title 1",
+            username: "admin",
+        };
+        ReactDOM.render(<SinglePost post={fakePost}/>, document.getElementById("myBody"));
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.clickedPostId !== prevState.clickedPostId) {
+            let post = this.findPostById();
+            ReactDOM.render(<SinglePost post={post}/>, document.getElementById("myBody"));
         }
-    };
-
-    updateCurrentUser = (username) => {
-        this.setState({username});
-    };
-
-    updateCurrentId = (id) => {
-        this.setState({id});
-    };
-
-    updatePosts = () => {
-        this.getPosts(`http://localhost:8080/posts/all`);
-    };
+    }
 
     render() {
         return (
@@ -71,67 +70,6 @@ class NavBar extends Component {
                            updateCurrentId={this.updateCurrentId}/>
             </React.Fragment>
         );
-    }
-
-    componentDidMount() {
-        let fakePost = {
-            comments: [],
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales, lorem quis scelerisque ultrices, augue velit gravida lectus, at fringilla erat mauris eget magna. Morbi ut odio sed ligula ali…",
-            id: "5c83ff45bc7e6309ac7cdc74",
-            photoURL: "",
-            title: "Title 1",
-            username: "admin",
-        };
-        ReactDOM.render(<SinglePost post={fakePost}/>, document.getElementById("myBody"));
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.clickedPostId !== prevState.clickedPostId) {
-            let post = this.findPostById();
-            ReactDOM.render(<SinglePost post={post}/>, document.getElementById("myBody"));
-        }
-    }
-
-    findPostById = () => {
-        return this.state.items.find(item => item.id === this.state.clickedPostId);
-    };
-
-    updateClickedPostId = (clickedPostId) => {
-        this.setState({clickedPostId});
-    };
-
-    navbarPostsHtml = () => {
-        return (
-            <ul className="navbar-nav mr-auto">
-                <li>
-                    {this.newPostButton()}
-                </li>
-                <li>
-                    <div className="my-2 my-lg-0 ml-2" style={{display: "inline-flex"}}>
-                        <input className="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search"
-                               id="search"/>
-                        <button className="btn btn-outline-info my-2 my-sm-0" onClick={this.getTitle}>
-                            Search
-                        </button>
-                    </div>
-                </li>
-            </ul>
-        )
-    };
-
-    newPostButton = () => {
-        if (this.state.username === "") {
-            return(
-                <div></div>
-            );
-        } else{
-            return (
-                <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
-                        data-target="#exampleModalCenter">
-                    New Post
-                </button>
-            );
-        }
     }
 
     navbarAccountHtml = () => {
@@ -174,10 +112,69 @@ class NavBar extends Component {
         }
     };
 
-    logOut = () => {
-        this.setState({username: ""});
-    }
+    logOut = () => this.setState({username: ""});
 
+    navbarPostsHtml = () => {
+        return (
+            <ul className="navbar-nav mr-auto">
+                <li>
+                    {this.newPostButton()}
+                </li>
+                <li>
+                    <div className="my-2 my-lg-0 ml-2" style={{display: "inline-flex"}}>
+                        <input className="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search"
+                               id="search"/>
+                        <button className="btn btn-outline-info my-2 my-sm-0" onClick={this.getTitle}>
+                            Search
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        )
+    };
+
+    newPostButton = () => {
+        if (this.state.username === "") {
+            return(
+                <div/>
+            );
+        } else{
+            return (
+                <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
+                        data-target="#exampleModalCenter">
+                    New Post
+                </button>
+            );
+        }
+    };
+
+    getTitle = () => {
+        if (document.getElementById("search").value === "") {
+            this.getPosts("http://localhost:8080/posts/all");
+        } else {
+            this.getPosts("http://localhost:8080/posts/title/" + document.getElementById("search").value);
+        }
+    };
+
+    updateCurrentUser = (username) => {
+        this.setState({username});
+    };
+
+    updateCurrentId = (id) => {
+        this.setState({id});
+    };
+
+    updatePosts = () => {
+        setTimeout(  () => {this.getPosts("http://localhost:8080/posts/all")}, 1000);
+    };
+
+    findPostById = () => {
+        return this.state.items.find(item => item.id === this.state.clickedPostId);
+    };
+
+    updateClickedPostId = (clickedPostId) => {
+        this.setState({clickedPostId});
+    };
 }
 
 export default NavBar;

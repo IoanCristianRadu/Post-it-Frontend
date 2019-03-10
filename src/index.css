@@ -31,5 +31,9 @@
 }
 
 .nav-link{
-    padding: 0rem;
+    padding: 0;
+}
+
+.myFloatRight{
+    float: right;
 }
