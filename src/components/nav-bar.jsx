@@ -50,7 +50,7 @@ class NavBar extends Component {
     render() {
         return (
             <React.Fragment>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-light">
                     <a className="navbar-brand cursorPointer">
                         Post it!
                     </a>

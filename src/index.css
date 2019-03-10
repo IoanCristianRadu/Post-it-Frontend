@@ -4,7 +4,6 @@
 
 .center {
     width: 400px;
-    border: 1px solid #b3d7ff;
     padding: 10px;
     display: block;
     margin-left: auto;
@@ -17,4 +16,16 @@
 
 .myModalWidth{
     max-width: 70%;
+}
+
+.modal-header{
+    background-color: #f6faff;
+}
+
+.modal-title{
+    color:#485c82;
+}
+
+.navbar{
+    background-color: #f6faff;
 }
