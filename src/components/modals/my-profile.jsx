@@ -43,13 +43,13 @@ class MyProfile extends Component {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="profilePassword">Password</label>
-                                    <textarea className="form-control" id="profilePassword" name="profilePassword"
-    required/>
+                                    <input type="password" className="form-control" id="profilePassword"
+                                           name="profilePassword" required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="retypePassword">Retype password</label>
-                                    <textarea className="form-control" id="retypePassword" name="retypePassword"
-    required/>
+                                    <input type="password" className="form-control" id="retypePassword"
+                                           name="retypePassword" required/>
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-outline-danger" data-dismiss="modal">Close</button>
