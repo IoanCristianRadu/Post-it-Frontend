@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class MyProfile extends Component {
-    state = {}
+    state = {};
 
     changeProfile = () => {
         if (document.getElementById("profilePassword").value === document.getElementById("retypePassword").value) {
@@ -21,7 +21,7 @@ class MyProfile extends Component {
                 .catch(error => console.error('Error:', error));
         }
         else alert("Passwords don't match!");
-    }
+    };
 
     render() {
         return (
@@ -39,21 +39,21 @@ class MyProfile extends Component {
                             <form className="was-validated">
                                 <div className="mb-3">
                                     <label htmlFor="profileUsername">Username</label>
-                                    <textarea className="form-control" id="profileUsername" name="profileUsername" placeholder={this.props.username}></textarea>
+                                    <textarea className="form-control" id="profileUsername" name="profileUsername" placeholder={this.props.username}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="profilePassword">Password</label>
                                     <textarea className="form-control" id="profilePassword" name="profilePassword"
-                                        required></textarea>
+    required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="retypePassword">Retype password</label>
                                     <textarea className="form-control" id="retypePassword" name="retypePassword"
-                                        required></textarea>
+    required/>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary" data-dismiss="modal" onClick={this.changeProfile}>Submit</button>
+                                    <button type="button" className="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" className="btn btn-outline-info" data-dismiss="modal" onClick={this.changeProfile}>Submit</button>
                                 </div>
                             </form>
                         </div >

@@ -25,7 +25,7 @@ class NavBar extends Component {
         fetch(url)
             .then(result => result.json())
             .then(myItems => this.setState({items: myItems}));
-    }
+    };
 
     getTitle = () => {
         if (document.getElementById("search").value === "") {
@@ -33,27 +33,25 @@ class NavBar extends Component {
         } else {
             this.getPosts("http://localhost:8080/posts/title/" + document.getElementById("search").value);
         }
-    }
+    };
 
     updateCurrentUser = (username) => {
         this.setState({username});
-    }
+    };
 
     updateCurrentId = (id) => {
         this.setState({id});
-    }
+    };
 
     updatePosts = () => {
         this.getPosts(`http://localhost:8080/posts/all`);
-    }
+    };
 
     render() {
         return (
             <React.Fragment>
                 <nav className="navbar navbar-expand-lg navbar-light">
-                    <a className="navbar-brand cursorPointer">
-                        Post it!
-                    </a>
+                    <a className="navbar-brand cursorPointer">Post it!</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +81,7 @@ class NavBar extends Component {
             photoURL: "",
             title: "Title 1",
             username:"admin",
-        }
+        };
         ReactDOM.render(<SinglePost post={fakePost}/>, document.getElementById("myBody"));
     }
 
@@ -96,7 +94,7 @@ class NavBar extends Component {
 
     findPostById= () =>{
         return this.state.items.find(item => item.id === this.state.clickedPostId);
-    }
+    };
 
     updateClickedPostId = (clickedPostId) => {
         this.setState({clickedPostId});
@@ -106,7 +104,7 @@ class NavBar extends Component {
         return (
             <ul className="navbar-nav mr-auto">
                 <li>
-                    <button className="btn btn-outline-success my-2 my-lg-0 ml-2" data-toggle="modal"
+                    <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
                             data-target="#exampleModalCenter">
                         New Post
                     </button>
@@ -115,14 +113,14 @@ class NavBar extends Component {
                     <div className="my-2 my-lg-0 ml-2" style={{display: "inline-flex"}}>
                         <input className="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search"
                                id="search"/>
-                        <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.getTitle}>
+                        <button className="btn btn-outline-info my-2 my-sm-0" onClick={this.getTitle}>
                             Search
                         </button>
                     </div>
                 </li>
             </ul>
         )
-    }
+    };
 
     navbarAccountHtml = () => {
         if (this.state.username === "") {
@@ -162,7 +160,7 @@ class NavBar extends Component {
                 </ul>
             )
         }
-    }
+    };
 
     logOut = () => {
         this.setState({username: ""});

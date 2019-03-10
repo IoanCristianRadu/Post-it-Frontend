@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class CreateAccount extends Component {
-    state = {}
+    state = {};
 
     postMe = () => {
         fetch("http://localhost:8080/account", {
@@ -17,7 +17,7 @@ class CreateAccount extends Component {
         }).then(res => res.json())
             .then(response => console.log('Success:', JSON.stringify(response)))
             .catch(error => console.error('Error:', error));
-    }
+    };
 
     render() {
         return (
@@ -35,16 +35,16 @@ class CreateAccount extends Component {
                             <form className="was-validated">
                                 <div className="mb-3">
                                     <label htmlFor="createAccUsername">Username</label>
-                                    <textarea className="form-control" id="createAccUsername" name="createAccUsername" required></textarea>
+                                    <textarea className="form-control" id="createAccUsername" name="createAccUsername" required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="CreateAccPassword">Password</label>
                                     <textarea className="form-control" id="CreateAccPassword" name="CreateAccPassword"
-                                        required></textarea>
+    required/>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary" data-dismiss="modal" onClick={this.postMe}>Create</button>
+                                    <button type="button" className="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" className="btn btn-outline-info" data-dismiss="modal" onClick={this.postMe}>Create</button>
                                 </div>
                             </form>
                         </div >

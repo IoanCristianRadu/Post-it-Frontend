@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
-    state = {}
+    state = {};
 
     logIn = () => {
         fetch("http://localhost:8080/account/login", {
@@ -17,7 +17,7 @@ class Login extends Component {
             .then(response => this.props.updateCurrentId(response))
             .then(this.props.updateCurrentUser(document.getElementById("loginUsername").value))
             .catch(error => console.error('Error:', error));
-    }
+    };
 
     render() {
         return (
@@ -35,16 +35,16 @@ class Login extends Component {
                             <form className="was-validated">
                                 <div className="mb-3">
                                     <label htmlFor="loginUsername">Username</label>
-                                    <textarea className="form-control" id="loginUsername" name="loginUsername" required></textarea>
+                                    <textarea className="form-control" id="loginUsername" name="loginUsername" required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="loginPassword">Password</label>
                                     <textarea className="form-control" id="loginPassword" name="loginPassword"
-                                        required></textarea>
+                                        required/>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary" data-dismiss="modal" onClick={this.logIn}>Log in</button>
+                                    <button type="button" className="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" className="btn btn-outline-info" data-dismiss="modal" onClick={this.logIn}>Log in</button>
                                 </div>
                             </form>
                         </div >

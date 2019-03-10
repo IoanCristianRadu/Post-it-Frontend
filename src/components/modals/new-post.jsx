@@ -21,7 +21,7 @@ class NewPost extends Component {
                 .then(this.props.updatePosts())
                 .catch(error => console.error('Error:', error));
         }
-    }
+    };
 
     render() {
         return (
@@ -51,8 +51,8 @@ class NewPost extends Component {
                                     <textarea className="form-control" id="photoURL" name="photoURL" />
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary" data-dismiss="modal" onClick={this.postMe}>Post</button>
+                                    <button type="button" className="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" className="btn btn-outline-info" data-dismiss="modal" onClick={this.postMe}>Post</button>
                                 </div>
                             </form>
                         </div >
