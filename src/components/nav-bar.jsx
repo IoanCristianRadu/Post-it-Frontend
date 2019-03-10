@@ -11,7 +11,7 @@ class NavBar extends Component {
     state = {
         username: "",
         id: "",
-        clickedPostId : "",
+        clickedPostId: "",
         items: []
     };
 
@@ -73,26 +73,26 @@ class NavBar extends Component {
         );
     }
 
-    componentDidMount(){
+    componentDidMount() {
         let fakePost = {
             comments: [],
             content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales, lorem quis scelerisque ultrices, augue velit gravida lectus, at fringilla erat mauris eget magna. Morbi ut odio sed ligula ali…",
             id: "5c83ff45bc7e6309ac7cdc74",
             photoURL: "",
             title: "Title 1",
-            username:"admin",
+            username: "admin",
         };
         ReactDOM.render(<SinglePost post={fakePost}/>, document.getElementById("myBody"));
     }
 
-    componentDidUpdate(prevProps,prevState){
+    componentDidUpdate(prevProps, prevState) {
         if (this.state.clickedPostId !== prevState.clickedPostId) {
             let post = this.findPostById();
             ReactDOM.render(<SinglePost post={post}/>, document.getElementById("myBody"));
         }
     }
 
-    findPostById= () =>{
+    findPostById = () => {
         return this.state.items.find(item => item.id === this.state.clickedPostId);
     };
 
@@ -104,10 +104,7 @@ class NavBar extends Component {
         return (
             <ul className="navbar-nav mr-auto">
                 <li>
-                    <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
-                            data-target="#exampleModalCenter">
-                        New Post
-                    </button>
+                    {this.newPostButton()}
                 </li>
                 <li>
                     <div className="my-2 my-lg-0 ml-2" style={{display: "inline-flex"}}>
@@ -121,6 +118,21 @@ class NavBar extends Component {
             </ul>
         )
     };
+
+    newPostButton = () => {
+        if (this.state.username === "") {
+            return(
+                <div></div>
+            );
+        } else{
+            return (
+                <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
+                        data-target="#exampleModalCenter">
+                    New Post
+                </button>
+            );
+        }
+    }
 
     navbarAccountHtml = () => {
         if (this.state.username === "") {
@@ -153,8 +165,8 @@ class NavBar extends Component {
                             </button>
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item" data-toggle="modal" data-target="#myProfile">My Profile</a>
-                            <a className="dropdown-item" onClick={this.logOut}>Log out</a>
+                            <a className="dropdown-item cursorPointer" data-toggle="modal" data-target="#myProfile">My Profile</a>
+                            <a className="dropdown-item cursorPointer" onClick={this.logOut}>Log out</a>
                         </div>
                     </li>
                 </ul>

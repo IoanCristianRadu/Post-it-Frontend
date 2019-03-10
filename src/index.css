@@ -29,3 +29,7 @@
 .navbar{
     background-color: #f6faff;
 }
+
+.nav-link{
+    padding: 0rem;
+}

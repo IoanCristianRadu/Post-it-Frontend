@@ -1,32 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class NewPost extends Component {
-    postMe = () => {
-        if (this.props.state.username === "") {
-            alert("You are not logged in!");
-        } else {
-            fetch("http://localhost:8080/posts", {
-                method: 'POST', // or 'PUT'
-                body: JSON.stringify({
-                    title: document.getElementById("title").value,
-                    content: document.getElementById("content").value,
-                    photoURL: document.getElementById("photoURL").value,
-                    username: this.props.state.username
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => res.json())
-                .then(response => console.log('Success:', JSON.stringify(response)))
-                .then(this.props.updatePosts())
-                .catch(error => console.error('Error:', error));
-        }
-    };
-
     render() {
         return (
-            <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true">
+            <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle"
+                 aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -44,23 +23,45 @@ class NewPost extends Component {
                                 <div className="mb-3">
                                     <label htmlFor="content">Content</label>
                                     <textarea className="form-control" id="content" name="content"
-                                        required/>
+                                              required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="photoURL">photoURL</label>
-                                    <textarea className="form-control" id="photoURL" name="photoURL" />
+                                    <textarea className="form-control" id="photoURL" name="photoURL"/>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-outline-info" data-dismiss="modal" onClick={this.postMe}>Post</button>
+                                    <button type="button" className="btn btn-outline-danger"
+                                            data-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" className="btn btn-outline-info" data-dismiss="modal"
+                                            onClick={this.postMe}>Post
+                                    </button>
                                 </div>
                             </form>
-                        </div >
-                    </div >
-                </div >
-            </div >
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
+
+    postMe = () => {
+        fetch("http://localhost:8080/posts", {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify({
+                title: document.getElementById("title").value,
+                content: document.getElementById("content").value,
+                photoURL: document.getElementById("photoURL").value,
+                username: this.props.state.username
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .then(this.props.updatePosts())
+            .catch(error => console.error('Error:', error));
+    };
 }
 
 export default NewPost;
