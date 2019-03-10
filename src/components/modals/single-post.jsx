@@ -17,7 +17,7 @@ class SinglePost extends Component {
                         <div key={this.props.post.id} className="modal-body">
                             <div className="card">
                                 <div className="card-body">
-                                    {this.addImageIfExists()}
+                                    {this.HTMLAddImageIfExists()}
                                     <p className="card-text mt-3">{this.props.post.content}</p>
                                     <p className="card-text"
                                        style={{textAlign: "right"}}>{this.props.post.username}</p>
@@ -27,12 +27,13 @@ class SinglePost extends Component {
                                             <label htmlFor="CommentArea">Comment:</label>
                                             <textarea className="form-control is-invalid" id="CommentArea"
                                                       placeholder="Required example textarea" required/>
-                                            <button type="submit"
-                                                    className="btn btn-outline-info mt-1 myFloatRight">Post
-                                            </button>
-                                            {this.addComments()}
                                         </div>
                                     </form>
+                                    <button
+                                        className="btn btn-outline-info mt-1 myFloatRight"
+                                        onClick={this.postComment}>Post
+                                    </button>
+                                    {this.HTMLAddComments()}
                                 </div>
                             </div>
                         </div>
@@ -42,16 +43,37 @@ class SinglePost extends Component {
         );
     }
 
-    addImageIfExists = () => {
+    postComment = () => {
+        let url = "http://localhost:8080/posts/comment/" + this.props.post.id;
+        fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify({
+                username: this.props.username,
+                comment: document.getElementById("CommentArea").value,
+                score: 0
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        this.props.updateComments();
+    };
+
+    HTMLAddImageIfExists = () => {
         if (this.props.post.photoURL !== "") {
             return <img src={this.props.post.photoURL} className="center"
                         alt={"postImage"}/>
         }
     };
 
-    addComments = () => {
+    HTMLAddComments = () => {
+        let i = 0;
         return this.props.post.comments.map(comment => (
-            <p>{comment}</p>
+            <div key={i++}>
+                <p>{comment.username}</p>
+                <p>{comment.comment}</p>
+                <p>{comment.score}</p>
+            </div>
         ));
     }
 }

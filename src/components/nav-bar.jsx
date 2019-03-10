@@ -36,13 +36,13 @@ class NavBar extends Component {
             title: "Title 1",
             username: "admin",
         };
-        ReactDOM.render(<SinglePost post={fakePost}/>, document.getElementById("myBody"));
+        ReactDOM.render(<SinglePost post={fakePost} username={this.state.username} updateComments={this.updateComments}/>, document.getElementById("myBody"));
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.clickedPostId !== prevState.clickedPostId) {
             let post = this.findPostById();
-            ReactDOM.render(<SinglePost post={post}/>, document.getElementById("myBody"));
+            ReactDOM.render(<SinglePost post={post} username={this.state.username} updateComments={this.updateComments}/>, document.getElementById("myBody"));
         }
     }
 
@@ -165,7 +165,7 @@ class NavBar extends Component {
     };
 
     updatePosts = () => {
-        setTimeout(  () => {this.getPosts("http://localhost:8080/posts/all")}, 1000);
+        setTimeout(  () => {this.getPosts("http://localhost:8080/posts/all")}, 50);
     };
 
     findPostById = () => {
@@ -175,6 +175,17 @@ class NavBar extends Component {
     updateClickedPostId = (clickedPostId) => {
         this.setState({clickedPostId});
     };
+
+    updateComments = () => {
+        setTimeout(  () => {
+            this.getPosts("http://localhost:8080/posts/all");
+
+        }, 50);
+        setTimeout(() => {
+            let post = this.findPostById();
+            ReactDOM.render(<SinglePost post={post} username={this.state.username} updateComments={this.updateComments}/>, document.getElementById("myBody"));
+        }, 100);
+    }
 }
 
 export default NavBar;

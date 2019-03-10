@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class MyProfile extends Component {
     state = {};
@@ -19,14 +19,13 @@ class MyProfile extends Component {
                 .then(response => console.log('Success:', JSON.stringify(response)))
                 .then(this.props.updateCurrentUser(document.getElementById("profileUsername").value))
                 .catch(error => console.error('Error:', error));
-        }
-        else alert("Passwords don't match!");
+        } else alert("Passwords don't match!");
     };
 
     render() {
         return (
             <div className="modal fade" id="myProfile" tabIndex="-1" role="dialog" aria-labelledby="TitleUsername"
-                aria-hidden="true">
+                 aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -39,7 +38,8 @@ class MyProfile extends Component {
                             <form className="was-validated">
                                 <div className="mb-3">
                                     <label htmlFor="profileUsername">Username</label>
-                                    <textarea className="form-control" id="profileUsername" name="profileUsername" placeholder={this.props.username}/>
+                                    <textarea className="form-control" id="profileUsername" name="profileUsername"
+                                              placeholder={this.props.username}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="profilePassword">Password</label>
@@ -52,14 +52,18 @@ class MyProfile extends Component {
                                            name="retypePassword" required/>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-outline-info" data-dismiss="modal" onClick={this.changeProfile}>Submit</button>
+                                    <button type="button" className="btn btn-outline-danger"
+                                            data-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" className="btn btn-outline-info" data-dismiss="modal"
+                                            onClick={this.changeProfile}>Submit
+                                    </button>
                                 </div>
                             </form>
-                        </div >
-                    </div >
-                </div >
-            </div >
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
