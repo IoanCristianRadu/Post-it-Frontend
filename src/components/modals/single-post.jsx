@@ -81,7 +81,7 @@ class SinglePost extends Component {
     HTMLAddComments = () => {
         let i = 0;
         return this.props.post.comments.map(comment => (
-            <div className="card" key={i++}>
+            <div className="card mt-1" key={i++}>
                 <div className="card-body">
                     <p>{comment.comment}</p>
                     <p className={"myFloatRight"}>posted by: {comment.username}</p>

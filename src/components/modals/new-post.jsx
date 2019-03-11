@@ -26,7 +26,7 @@ class NewPost extends Component {
                                               required/>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="photoURL">photoURL</label>
+                                    <label htmlFor="photoURL">Image link (optional)</label>
                                     <textarea className="form-control" id="photoURL" name="photoURL"/>
                                 </div>
                                 <div className="modal-footer">
