@@ -1,18 +1,20 @@
 import React, {Component} from "react";
-import Posts from "./posts";
+import V1posts from "./views/view-one/V1posts";
 import NewPost from "./modals/new-post";
 import Login from "./modals/login";
 import CreateAccount from "./modals/create-account";
 import MyProfile from "./modals/my-profile";
 import SinglePost from "./modals/single-post";
 import ReactDOM from "react-dom";
+import V2posts from "./views/view-two/V2posts";
 
 class NavBar extends Component {
     state = {
         username: "",
         id: "",
         clickedPostId: "",
-        items: []
+        items: [],
+        viewStyle: 0
     };
 
     constructor() {
@@ -36,13 +38,27 @@ class NavBar extends Component {
             title: "Title 1",
             username: "admin",
         };
-        ReactDOM.render(<SinglePost post={fakePost} username={this.state.username} updateComments={this.updateComments}/>, document.getElementById("myBody"));
+        ReactDOM.render(<SinglePost post={fakePost} username={this.state.username}
+                                    updateComments={this.updateComments}/>, document.getElementById("myBody"));
+        ReactDOM.render(<V1posts items={this.state.items}
+                                 updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.clickedPostId !== prevState.clickedPostId) {
             let post = this.findPostById();
-            ReactDOM.render(<SinglePost post={post} username={this.state.username} updateComments={this.updateComments}/>, document.getElementById("myBody"));
+            ReactDOM.render(<SinglePost post={post} username={this.state.username}
+                                        updateComments={this.updateComments}/>, document.getElementById("myBody"));
+        }
+
+        if (this.state.viewStyle !== prevState.viewStyle || this.state.items !== prevState.items) {
+            if(this.state.viewStyle === 0){
+                ReactDOM.render(<V1posts items={this.state.items}
+                                         updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
+            } else if (this.state.viewStyle === 1){
+                ReactDOM.render(<V2posts items={this.state.items}
+                                         updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
+            }
         }
     }
 
@@ -53,24 +69,37 @@ class NavBar extends Component {
                     <a className="navbar-brand cursorPointer">Post it!</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"/>
                     </button>
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         {this.navbarPostsHtml()}
+                        <button className="btn btn-outline-info my-2 my-sm-0" onClick={this.switchView}>
+                            Switch view
+                        </button>
                         {this.navbarAccountHtml()}
                     </div>
                 </nav>
-                <Posts items={this.state.items} updateClickedPostId={this.updateClickedPostId}/>
+                <div id={"posts"}/>
                 <Login updateCurrentUser={this.updateCurrentUser} updateCurrentId={this.updateCurrentId}/>
                 <NewPost updatePosts={this.updatePosts} state={this.state}/>
                 <CreateAccount/>
-                <MyProfile username={this.state.username} id={this.state.id} updateCurrentUser={this.updateCurrentUser}
+                <MyProfile username={this.state.username} id={this.state.id}
+                           updateCurrentUser={this.updateCurrentUser}
                            updateCurrentId={this.updateCurrentId}/>
             </React.Fragment>
         );
     }
+
+    switchView = () => {
+        if (this.state.viewStyle === 0) {
+            this.setState({viewStyle: 1})
+        } else {
+            this.setState({viewStyle: 0})
+        }
+    };
 
     navbarAccountHtml = () => {
         if (this.state.username === "") {
@@ -103,7 +132,8 @@ class NavBar extends Component {
                             </button>
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item cursorPointer" data-toggle="modal" data-target="#myProfile">My Profile</a>
+                            <a className="dropdown-item cursorPointer" data-toggle="modal" data-target="#myProfile">My
+                                Profile</a>
                             <a className="dropdown-item cursorPointer" onClick={this.logOut}>Log out</a>
                         </div>
                     </li>
@@ -135,10 +165,10 @@ class NavBar extends Component {
 
     newPostButton = () => {
         if (this.state.username === "") {
-            return(
+            return (
                 <div/>
             );
-        } else{
+        } else {
             return (
                 <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
                         data-target="#exampleModalCenter">
@@ -165,7 +195,9 @@ class NavBar extends Component {
     };
 
     updatePosts = () => {
-        setTimeout(  () => {this.getPosts("http://localhost:8080/posts/all")}, 50);
+        setTimeout(() => {
+            this.getPosts("http://localhost:8080/posts/all")
+        }, 50);
     };
 
     findPostById = () => {
@@ -177,13 +209,14 @@ class NavBar extends Component {
     };
 
     updateComments = () => {
-        setTimeout(  () => {
+        setTimeout(() => {
             this.getPosts("http://localhost:8080/posts/all");
 
         }, 50);
         setTimeout(() => {
             let post = this.findPostById();
-            ReactDOM.render(<SinglePost post={post} username={this.state.username} updateComments={this.updateComments}/>, document.getElementById("myBody"));
+            ReactDOM.render(<SinglePost post={post} username={this.state.username}
+                                        updateComments={this.updateComments}/>, document.getElementById("myBody"));
         }, 100);
     }
 }

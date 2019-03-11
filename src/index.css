@@ -2,12 +2,20 @@
     text-align: center;
 }
 
-.center {
+.myImageV1 {
     width: 400px;
     padding: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.myImageV2 {
+    width: 200px;
+    padding: 10px;
+    display: block;
+    margin-right: auto;
+    float: left;
 }
 
 .cursorPointer{

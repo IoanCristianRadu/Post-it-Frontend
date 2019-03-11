@@ -73,7 +73,7 @@ class SinglePost extends Component {
 
     HTMLAddImageIfExists = () => {
         if (this.props.post.photoURL !== "") {
-            return <img src={this.props.post.photoURL} className="center"
+            return <img src={this.props.post.photoURL} className="myImageV1"
                         alt={"postImage"}/>
         }
     };
