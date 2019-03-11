@@ -39,8 +39,8 @@ class Login extends Component {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="loginPassword">Password</label>
-                                    <textarea className="form-control" id="loginPassword" name="loginPassword"
-                                        required/>
+                                    <input type="password" className="form-control" id="loginPassword"
+                                           name="loginPassword" required/>
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-outline-danger" data-dismiss="modal">Close</button>

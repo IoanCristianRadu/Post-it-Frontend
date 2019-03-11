@@ -22,17 +22,7 @@ class SinglePost extends Component {
                                     <p className="card-text"
                                        style={{textAlign: "right"}}>{this.props.post.username}</p>
                                     <hr/>
-                                    <form className="was-validated">
-                                        <div className="mb-3">
-                                            <label htmlFor="CommentArea">Comment:</label>
-                                            <textarea className="form-control is-invalid" id="CommentArea"
-                                                      placeholder="Required example textarea" required/>
-                                        </div>
-                                    </form>
-                                    <button
-                                        className="btn btn-outline-info mt-1 myFloatRight"
-                                        onClick={this.postComment}>Post
-                                    </button>
+                                    {this.HTMLAddPostingCommentForm()}
                                     {this.HTMLAddComments()}
                                 </div>
                             </div>
@@ -42,6 +32,28 @@ class SinglePost extends Component {
             </div>
         );
     }
+
+    HTMLAddPostingCommentForm = () => {
+        if (this.props.username !== ""){
+            return (
+                <div className={"container"}>
+                    <form className="was-validated">
+                        <div className="mb-1">
+                            <label htmlFor="CommentArea">Comment:</label>
+                            <textarea className="form-control is-invalid" id="CommentArea"
+                                      placeholder="Required example textarea" required/>
+                        </div>
+                    </form>
+                    <button
+                        className="btn btn-outline-info mt-1 mb-3"
+                        onClick={this.postComment}>Post
+                    </button>
+                </div>
+            )
+        } else {
+            return <div/>
+        }
+    };
 
     postComment = () => {
         let url = "http://localhost:8080/posts/comment/" + this.props.post.id;
@@ -69,10 +81,11 @@ class SinglePost extends Component {
     HTMLAddComments = () => {
         let i = 0;
         return this.props.post.comments.map(comment => (
-            <div key={i++}>
-                <p>{comment.username}</p>
-                <p>{comment.comment}</p>
-                <p>{comment.score}</p>
+            <div className="card" key={i++}>
+                <div className="card-body">
+                    <p>{comment.comment}</p>
+                    <p className={"myFloatRight"}>posted by: {comment.username}</p>
+                </div>
             </div>
         ));
     }
