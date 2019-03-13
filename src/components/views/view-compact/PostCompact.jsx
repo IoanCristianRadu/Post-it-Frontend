@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class V2post extends Component {
+class PostCompact extends Component {
 
     render() {
         return (
@@ -32,4 +32,4 @@ class V2post extends Component {
     }
 }
 
-export default V2post;
+export default PostCompact;

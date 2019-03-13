@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-import V1posts from "./views/view-one/V1posts";
+import PostsLarge from "./views/view-large/PostsLarge";
 import NewPost from "./modals/new-post";
 import Login from "./modals/login";
 import CreateAccount from "./modals/create-account";
 import MyProfile from "./modals/my-profile";
 import SinglePost from "./modals/single-post";
 import ReactDOM from "react-dom";
-import V2posts from "./views/view-two/V2posts";
+import PostsCompact from "./views/view-compact/PostsCompact";
 
 class NavBar extends Component {
     state = {
@@ -40,8 +40,8 @@ class NavBar extends Component {
         };
         ReactDOM.render(<SinglePost post={fakePost} username={this.state.username}
                                     updateComments={this.updateComments}/>, document.getElementById("myBody"));
-        ReactDOM.render(<V1posts items={this.state.items}
-                                 updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
+        ReactDOM.render(<PostsLarge items={this.state.items}
+                                    updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -53,11 +53,11 @@ class NavBar extends Component {
 
         if (this.state.viewStyle !== prevState.viewStyle || this.state.items !== prevState.items) {
             if(this.state.viewStyle === 0){
-                ReactDOM.render(<V1posts items={this.state.items}
-                                         updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
+                ReactDOM.render(<PostsLarge items={this.state.items}
+                                            updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
             } else if (this.state.viewStyle === 1){
-                ReactDOM.render(<V2posts items={this.state.items}
-                                         updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
+                ReactDOM.render(<PostsCompact items={this.state.items}
+                                              updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
             }
         }
     }
@@ -217,7 +217,7 @@ class NavBar extends Component {
             let post = this.findPostById();
             ReactDOM.render(<SinglePost post={post} username={this.state.username}
                                         updateComments={this.updateComments}/>, document.getElementById("myBody"));
-        }, 100);
+        }, 200);
     }
 }
 

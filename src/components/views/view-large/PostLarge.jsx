@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class V1post extends Component {
+class PostLarge extends Component {
 
     render() {
         return (
@@ -29,4 +29,4 @@ class V1post extends Component {
     }
 }
 
-export default V1post;
+export default PostLarge;
