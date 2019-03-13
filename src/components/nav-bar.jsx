@@ -76,9 +76,6 @@ class NavBar extends Component {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         {this.navbarPostsHtml()}
-                        <button className="btn btn-outline-info my-2 my-sm-0" onClick={this.switchView}>
-                            Switch view
-                        </button>
                         {this.navbarAccountHtml()}
                     </div>
                 </nav>
@@ -148,7 +145,7 @@ class NavBar extends Component {
         return (
             <ul className="navbar-nav mr-auto">
                 <li>
-                    {this.newPostButton()}
+                    {this.postButtonIfLoggedIn()}
                 </li>
                 <li>
                     <div className="my-2 my-lg-0 ml-2" style={{display: "inline-flex"}}>
@@ -159,11 +156,16 @@ class NavBar extends Component {
                         </button>
                     </div>
                 </li>
+                <li>
+                    <button className="btn btn-outline-info my-2 my-lg-0 ml-2" onClick={this.switchView}>
+                        Switch view
+                    </button>
+                </li>
             </ul>
         )
     };
 
-    newPostButton = () => {
+    postButtonIfLoggedIn = () => {
         if (this.state.username === "") {
             return (
                 <div/>

@@ -13,7 +13,7 @@ class PostCompact extends Component {
                             {this.addImageIfExists(this.props.post)}
                             <p>{this.props.post.content}</p>
                         </span>
-                        <p className="card-text" style={{ textAlign: "right" }}>{this.props.post.username}</p>
+                        <p className="card-text myPostedBy">{this.props.post.username}</p>
                     </div>
                 </div>
             </div>
