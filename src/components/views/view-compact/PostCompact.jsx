@@ -8,7 +8,7 @@ class PostCompact extends Component {
                  onClick={this.callUpdateClickedPostId}>
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title myTextAlignCenter">{this.props.post.title}</h5>
+                        <h5 className="card-title myTitleCompact">{this.props.post.title}</h5>
                         <span>
                             {this.addImageIfExists(this.props.post)}
                             <p>{this.props.post.content}</p>

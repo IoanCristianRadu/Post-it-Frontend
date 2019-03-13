@@ -84,7 +84,7 @@ class SinglePost extends Component {
             <div className="card mt-1" key={i++}>
                 <div className="card-body">
                     <p>{comment.comment}</p>
-                    <p className={"myFloatRight"}>posted by: {comment.username}</p>
+                    <p className={"myFloatRight myPostedBy"}>{comment.username}</p>
                 </div>
             </div>
         ));
