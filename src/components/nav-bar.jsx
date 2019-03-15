@@ -52,10 +52,10 @@ class NavBar extends Component {
         }
 
         if (this.state.viewStyle !== prevState.viewStyle || this.state.items !== prevState.items) {
-            if(this.state.viewStyle === 0){
+            if (this.state.viewStyle === 0) {
                 ReactDOM.render(<PostsLarge items={this.state.items}
                                             updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
-            } else if (this.state.viewStyle === 1){
+            } else if (this.state.viewStyle === 1) {
                 ReactDOM.render(<PostsCompact items={this.state.items}
                                               updateClickedPostId={this.updateClickedPostId}/>, document.getElementById("posts"));
             }
@@ -131,6 +131,7 @@ class NavBar extends Component {
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a className="dropdown-item cursorPointer" data-toggle="modal" data-target="#myProfile">My
                                 Profile</a>
+                            <a className="dropdown-item cursorPointer" onClick={this.showUsernamePosts}>Show {this.state.username + "'s posts"}</a>
                             <a className="dropdown-item cursorPointer" onClick={this.logOut}>Log out</a>
                         </div>
                     </li>
@@ -140,6 +141,7 @@ class NavBar extends Component {
     };
 
     logOut = () => this.setState({username: ""});
+    showUsernamePosts = () => this.getPosts("http://localhost:8080/posts/username/" + this.state.username);
 
     navbarPostsHtml = () => {
         return (
@@ -214,12 +216,12 @@ class NavBar extends Component {
         setTimeout(() => {
             this.getPosts("http://localhost:8080/posts/all");
 
-        }, 50);
+        }, 200);
         setTimeout(() => {
             let post = this.findPostById();
             ReactDOM.render(<SinglePost post={post} username={this.state.username}
                                         updateComments={this.updateComments}/>, document.getElementById("myBody"));
-        }, 200);
+        }, 500);
     }
 }
 
