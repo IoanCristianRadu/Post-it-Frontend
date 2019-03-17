@@ -3,25 +3,6 @@ import React, {Component} from 'react';
 class MyProfile extends Component {
     state = {};
 
-    changeProfile = () => {
-        if (document.getElementById("profilePassword").value === document.getElementById("retypePassword").value) {
-            fetch("http://localhost:8080/account", {
-                method: 'POST', // or 'PUT'
-                body: JSON.stringify({
-                    id: this.props.id,
-                    username: document.getElementById("profileUsername").value,
-                    password: document.getElementById("profilePassword").value
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => res.json())
-                .then(response => console.log('Success:', JSON.stringify(response)))
-                .then(this.props.updateCurrentUser(document.getElementById("profileUsername").value))
-                .catch(error => console.error('Error:', error));
-        } else alert("Passwords don't match!");
-    };
-
     render() {
         return (
             <div className="modal fade" id="myProfile" tabIndex="-1" role="dialog" aria-labelledby="TitleUsername"
@@ -66,6 +47,25 @@ class MyProfile extends Component {
             </div>
         );
     }
+
+    changeProfile = () => {
+        if (document.getElementById("profilePassword").value === document.getElementById("retypePassword").value) {
+            fetch("http://localhost:8080/account", {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify({
+                    id: this.props.id,
+                    username: document.getElementById("profileUsername").value,
+                    password: document.getElementById("profilePassword").value
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+                .then(response => console.log('Success:', JSON.stringify(response)))
+                .then(this.props.updateCurrentUser(document.getElementById("profileUsername").value))
+                .catch(error => console.error('Error:', error));
+        } else alert("Passwords don't match!");
+    };
 }
 
 export default MyProfile;

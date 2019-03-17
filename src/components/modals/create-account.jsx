@@ -3,26 +3,6 @@ import React, {Component} from 'react';
 class CreateAccount extends Component {
     state = {};
 
-    postMe = () => {
-        if (document.getElementById("CreateAccPassword").value === document.getElementById("CreateAccPasswordRetype").value) {
-            fetch("http://localhost:8080/account", {
-                method: 'PUT', // or 'PUT'
-                body: JSON.stringify({
-                    username: document.getElementById("createAccUsername").value,
-                    password: document.getElementById("CreateAccPassword").value,
-                    comments: []
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => res.json())
-                .then(response => console.log('Success:', JSON.stringify(response)))
-                .catch(error => console.error('Error:', error));
-        } else {
-            alert("Passwords do not match!");
-        }
-    };
-
     render() {
         return (
             <div className="modal fade" id="createAccount" tabIndex="-1" role="dialog"
@@ -66,6 +46,26 @@ class CreateAccount extends Component {
             </div>
         );
     }
+
+    postMe = () => {
+        if (document.getElementById("CreateAccPassword").value === document.getElementById("CreateAccPasswordRetype").value) {
+            fetch("http://localhost:8080/account", {
+                method: 'PUT', // or 'PUT'
+                body: JSON.stringify({
+                    username: document.getElementById("createAccUsername").value,
+                    password: document.getElementById("CreateAccPassword").value,
+                    comments: []
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+                .then(response => console.log('Success:', JSON.stringify(response)))
+                .catch(error => console.error('Error:', error));
+        } else {
+            alert("Passwords do not match!");
+        }
+    };
 }
 
 export default CreateAccount;

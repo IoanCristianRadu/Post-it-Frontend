@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 class PostCompact extends Component {
-
     render() {
         return (
-            <div key={this.props.post.id} id={this.props.post.id} className={"cursorPointer m-3"} data-toggle="modal" data-target="#modalSinglePost"
+            <div key={this.props.post.id} id={this.props.post.id} className={"cursorPointer m-3"} data-toggle="modal"
+                 data-target="#modalSinglePost"
                  onClick={this.callUpdateClickedPostId}>
                 <div className="card">
                     <div className="card-body">

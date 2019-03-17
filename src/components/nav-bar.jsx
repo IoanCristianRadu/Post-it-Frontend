@@ -90,59 +90,6 @@ class NavBar extends Component {
         );
     }
 
-    switchView = () => {
-        if (this.state.viewStyle === 0) {
-            this.setState({viewStyle: 1})
-        } else {
-            this.setState({viewStyle: 0})
-        }
-    };
-
-    navbarAccountHtml = () => {
-        if (this.state.username === "") {
-            return (
-                <React.Fragment>
-                    <ul className="navbar-nav">
-                        <li>
-                            <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
-                                    data-target="#login">
-                                Log in
-                            </button>
-                        </li>
-                        <li>
-                            <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
-                                    data-target="#createAccount">
-                                Create account
-                            </button>
-                        </li>
-                    </ul>
-                </React.Fragment>
-            )
-        } else {
-            return (
-                <ul className="navbar-nav" style={{paddingRight: 75}}>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <button type="button" className="btn btn-primary my-2 my-lg-0 ml-2">
-                                {this.state.username}
-                            </button>
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item cursorPointer" data-toggle="modal" data-target="#myProfile">My
-                                Profile</a>
-                            <a className="dropdown-item cursorPointer" onClick={this.showUsernamePosts}>Show {this.state.username + "'s posts"}</a>
-                            <a className="dropdown-item cursorPointer" onClick={this.logOut}>Log out</a>
-                        </div>
-                    </li>
-                </ul>
-            )
-        }
-    };
-
-    logOut = () => this.setState({username: ""});
-    showUsernamePosts = () => this.getPosts("http://localhost:8080/posts/username/" + this.state.username);
-
     navbarPostsHtml = () => {
         return (
             <ul className="navbar-nav mr-auto">
@@ -182,6 +129,14 @@ class NavBar extends Component {
         }
     };
 
+    switchView = () => {
+        if (this.state.viewStyle === 0) {
+            this.setState({viewStyle: 1})
+        } else {
+            this.setState({viewStyle: 0})
+        }
+    };
+
     getTitle = () => {
         if (document.getElementById("search").value === "") {
             this.getPosts("http://localhost:8080/posts/all");
@@ -189,6 +144,52 @@ class NavBar extends Component {
             this.getPosts("http://localhost:8080/posts/title/" + document.getElementById("search").value);
         }
     };
+
+    navbarAccountHtml = () => {
+        if (this.state.username === "") {
+            return (
+                <React.Fragment>
+                    <ul className="navbar-nav">
+                        <li>
+                            <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
+                                    data-target="#login">
+                                Log in
+                            </button>
+                        </li>
+                        <li>
+                            <button className="btn btn-outline-info my-2 my-lg-0 ml-2" data-toggle="modal"
+                                    data-target="#createAccount">
+                                Create account
+                            </button>
+                        </li>
+                    </ul>
+                </React.Fragment>
+            )
+        } else {
+            return (
+                <ul className="navbar-nav" style={{paddingRight: 75}}>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" className="btn btn-primary my-2 my-lg-0 ml-2">
+                                {this.state.username}
+                            </button>
+                        </a>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a className="dropdown-item cursorPointer" data-toggle="modal" data-target="#myProfile">My
+                                Profile</a>
+                            <a className="dropdown-item cursorPointer"
+                               onClick={this.showUsernamePosts}>Show {this.state.username + "'s posts"}</a>
+                            <a className="dropdown-item cursorPointer" onClick={this.logOut}>Log out</a>
+                        </div>
+                    </li>
+                </ul>
+            )
+        }
+    };
+
+    showUsernamePosts = () => this.getPosts("http://localhost:8080/posts/username/" + this.state.username);
+    logOut = () => this.setState({username: ""});
 
     updateCurrentUser = (username) => {
         this.setState({username});

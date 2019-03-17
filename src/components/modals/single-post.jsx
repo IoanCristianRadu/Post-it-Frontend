@@ -33,8 +33,15 @@ class SinglePost extends Component {
         );
     }
 
+    HTMLAddImageIfExists = () => {
+        if (this.props.post.photoURL !== "") {
+            return <img src={this.props.post.photoURL} className="myImageV1"
+                        alt={"postImage"}/>
+        }
+    };
+
     HTMLAddPostingCommentForm = () => {
-        if (this.props.username !== ""){
+        if (this.props.username !== "") {
             return (
                 <div className={"container"}>
                     <form className="was-validated">
@@ -69,13 +76,6 @@ class SinglePost extends Component {
             }
         });
         this.props.updateComments();
-    };
-
-    HTMLAddImageIfExists = () => {
-        if (this.props.post.photoURL !== "") {
-            return <img src={this.props.post.photoURL} className="myImageV1"
-                        alt={"postImage"}/>
-        }
     };
 
     HTMLAddComments = () => {

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 
 class PostLarge extends Component {
-
     render() {
         return (
             <div key={this.props.post.id} id={this.props.post.id} className={"cursorPointer m-3"} data-toggle="modal"
